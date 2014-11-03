@@ -1,4 +1,4 @@
-polynome;
+package polynome;
 
 public class Polynome {
 
