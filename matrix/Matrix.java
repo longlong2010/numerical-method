@@ -88,5 +88,6 @@ public class Matrix {
 	}
 
 	public static void main(String[] args) {
+		Matrix.loadMatrix(args[0]).print();
 	}
 }
