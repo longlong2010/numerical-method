@@ -102,7 +102,13 @@ public class LU {
 		}
 		Matrix y = new Matrix(row, 1);
 		for (int i = 0; i < row; i++) {
-			y.set(i, 0, b.get(i, 0));
+			for (int j = 0; j < row; j++) {
+				if (p.get(i, j) == 1) {
+					y.set(i, 0, b.get(j, 0));
+					break;
+				}
+			}
+
 			for (int j = 0; j < i; j++) {
 				y.set(i, 0, y.get(i, 0) - this.l.get(i, j) * y.get(j, 0));
 			}
