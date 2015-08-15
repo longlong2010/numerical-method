@@ -123,6 +123,25 @@ public class LU {
 		}
 		return x;
 	}
+	
+	public Matrix inverse() throws LUException {
+		int row = this.l.getRowSize();
+		int col = this.u.getColumnSize();
+		Matrix m = new Matrix(row, col);
+		try {
+			for (int i = 0; i < row; i++) {
+				Matrix b = new Matrix(col, 1);
+				b.set(i, 0, 1);
+				Matrix y = this.solve(b);
+				for (int j = 0; j < col; j++) {
+					m.set(j, i, y.get(j, 0));
+				}
+			}
+		} catch (LUException ex) {
+			throw ex;
+		}
+		return m;
+	}
 
 	private LU(int m, int n) {
 		this.l = new LMatrix(m, m);
@@ -162,6 +181,7 @@ public class LU {
 				System.out.println("x:");
 				x.print();
 			}
+			lu.inverse().print();
 		} catch (LUException e) {
 			e.printStackTrace();		
 		}
